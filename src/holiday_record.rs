@@ -1,5 +1,6 @@
-use std::fs::File;
 use serde::Deserialize;
+
+const HOLIDAYS : &'static str = include_str!("../holidays.csv");
 
 #[derive(Debug, Deserialize)]
 pub struct HolidayRecord {
@@ -8,8 +9,7 @@ pub struct HolidayRecord {
 }
 
 pub fn parse_holidays() -> Vec<HolidayRecord> {
-    let f = File::open("holidays.csv").expect("Failed to open csv file.");
-    let mut rdr = csv::Reader::from_reader(f);
+    let mut rdr = csv::Reader::from_reader(HOLIDAYS.as_bytes());
     rdr
         .deserialize()
         .map(|r| r.expect("Failed to deserialise csv record"))
