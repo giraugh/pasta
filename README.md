@@ -1,7 +1,7 @@
-# pasta
-Displays the pastafarian holiday for the current date. Written in rust and intended for use in a terminal greeting message.
+# Pasta 🍝
+Displays the pastafarian holiday for the current date. A small program written in rust and intended for use as part of a terminal greeting message.
 
-### Usage
+## Usage
 Simply run the binary and it will print the current holiday to standard out. For example, this may be the output if run on the 9th of June.
 
 ```bash
@@ -11,7 +11,7 @@ Bathe in Marinara Day
 
 You can add or change any holidays in the `holidays.csv` file to customise the output :thumbsup:.
 
-### Building
+## Building
 
 Building `pasta` requires a copy of the rust compiler. You can install it using rustup which is available [here](https://www.rust-lang.org/tools/install).
 
@@ -41,9 +41,9 @@ function fish_greeting
 end
 ```
 
-### Contributing
+## Contributing
 If you encounter any issues or bugs, please leave an issue on Github. Additionally, all and any PRs are welcome :)
 
 
-### Copyright
+## Copyright
 *Ewan Breakey - MIT 2021*
