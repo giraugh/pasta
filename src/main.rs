@@ -1,19 +1,16 @@
-use std::fs::File;
 mod holiday_record;
-use holiday_record::HolidayRecord;
+use holiday_record::parse_holidays;
+use chrono::prelude::Local;
 
 fn main() {
     let holidays = parse_holidays();
+    let current_date = Local::now().format("%b%e").to_string();
     for holiday in holidays.iter() {
-        println!("{:?}", holiday);
+        //println!("'{}' == '{}'", holiday.date.trim(), current_date.trim());
+        if holiday.date.trim().eq(current_date.trim()) {
+            println!("{}", holiday.holiday);
+            break;
+        }
     }
 }
 
-fn parse_holidays() -> Vec<HolidayRecord> {
-    let f = File::open("holidays.csv").expect("Failed to open csv file.");
-    let mut rdr = csv::Reader::from_reader(f);
-    rdr
-        .deserialize()
-        .map(|r| r.expect("Failed to deserialise csv record"))
-        .collect()
-}
