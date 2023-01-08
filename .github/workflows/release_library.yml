@@ -44,6 +44,9 @@ jobs:
       working-directory: ./pasta-lib/pkg
       run: yarn install --immutable
     
+    - name: Satiate changeset by putting .changeset in root
+      run: cp -r ./.changeset ../.changeset
+    
     - name: Make release with changeset
       uses: changesets/action@v1
       with:
