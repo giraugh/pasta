@@ -28,19 +28,6 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: '**/yarn.lock'
 
-    # - name: Install wasm-pack
-    #   run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-    # - name: Check rust validity
-    #   run: cargo check
-
-    # - name: Build WASM package
-    #   run: wasm-pack build --target web
-
-    # - name: Create package to release
-    #   run: |
-    #     rm ./pkg/package.json
-
     - name: Install npm dependencies
       working-directory: ./pasta-lib
       run: yarn install --immutable
