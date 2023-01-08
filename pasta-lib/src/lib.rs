@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
 use chrono::{DateTime, Datelike, Local, Timelike};
-const HOLIDAYS: &str = include_str!("../holidays.csv");
+const HOLIDAYS: &str = include_str!("../data/holidays.csv");
 
 #[derive(Debug)]
 pub struct HolidayRecord {

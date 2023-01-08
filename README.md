@@ -28,7 +28,7 @@ cargo build
 
 Then, optionally, you can install it to your PATH.
 ```
-cargo install --path .
+cargo install --path pasta
 ```
 
 After doing so you can use it in your terminal greeting scripts. Here is an example for fish shell.

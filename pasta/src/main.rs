@@ -1,5 +1,5 @@
 use chrono::prelude::Local;
-use pasta::get_holiday_for_date;
+use pasta_lib::get_holiday_for_date;
 
 fn main() {
     // Get holiday
