@@ -2,8 +2,15 @@
 name = "pasta-lib"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/giraugh/pasta"
+description = "Get the pastafarian holiday for any date"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-chrono = "0.4"
+chrono = { version = "0.4", features=["serde", "wasmbind"] }
+wasm-bindgen = "0.2.83"
+
+[lib]
+crate-type = ["lib", "cdylib"]

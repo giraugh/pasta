@@ -1,0 +1,25 @@
+{
+  "name": "@giraugh/pasta",
+  "description": "Get the pastafarian holiday for any date",
+  "private": false,
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giraugh/pasta"
+  },
+  "scripts": {
+    "ci:release": "yarn changeset publish"
+  },
+  "files": [
+    "pasta_lib_bg.wasm",
+    "pasta_lib.js",
+    "pasta_lib.d.ts"
+  ],
+  "module": "pasta_lib.js",
+  "types": "pasta_lib.d.ts",
+  "sideEffects": false,
+  "devDependencies": {
+    "@changesets/cli": "^2.26.0"
+  }
+}

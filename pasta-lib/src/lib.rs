@@ -1,12 +1,27 @@
 use std::str::FromStr;
+use wasm_bindgen::prelude::*;
 
 use chrono::{DateTime, Datelike, Local, Timelike};
 const HOLIDAYS: &str = include_str!("../data/holidays.csv");
 
 #[derive(Debug)]
+#[wasm_bindgen]
 pub struct HolidayRecord {
-    pub date: String,
-    pub name: String,
+    date: String,
+    name: String,
+}
+
+#[wasm_bindgen]
+impl HolidayRecord {
+    #[wasm_bindgen(getter)]
+    pub fn name(&self) -> String {
+        self.name.clone()
+    }
+
+    #[wasm_bindgen(getter)]
+    pub fn date(&self) -> String {
+        self.date.clone()
+    }
 }
 
 impl FromStr for HolidayRecord {
@@ -19,6 +34,13 @@ impl FromStr for HolidayRecord {
         let name = name.strip_suffix(',').unwrap_or(name).to_owned();
         Ok(Self { date, name })
     }
+}
+
+#[wasm_bindgen]
+pub fn get_holidays_for_date_string(date: &str) -> Option<HolidayRecord> {
+    chrono::DateTime::from_str(date)
+        .ok()
+        .and_then(get_holiday_for_date)
 }
 
 pub fn get_holiday_for_date(date: DateTime<Local>) -> Option<HolidayRecord> {

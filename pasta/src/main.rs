@@ -8,7 +8,7 @@ fn main() {
 
     // Print holiday
     match holiday {
-        Some(holiday) => println!("{}", holiday.name),
+        Some(holiday) => println!("{}", holiday.name()),
         None => println!("Didn't find holiday for today :("),
     }
 }

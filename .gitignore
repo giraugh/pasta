@@ -13,3 +13,7 @@ Cargo.lock
 # Added by cargo
 
 /target
+
+pasta-lib/pkg
+
+*/node_modules
