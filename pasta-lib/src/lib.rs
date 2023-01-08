@@ -1,18 +1,19 @@
 use std::str::FromStr;
 use wasm_bindgen::prelude::*;
 
-use chrono::{DateTime, Datelike, Local, Timelike};
+use chrono::{DateTime, Datelike, Timelike};
 const HOLIDAYS: &str = include_str!("../data/holidays.csv");
 
 #[derive(Debug)]
 #[wasm_bindgen]
-pub struct HolidayRecord {
+pub struct Holiday {
     date: String,
     name: String,
 }
 
+/// A pastafarian holiday
 #[wasm_bindgen]
-impl HolidayRecord {
+impl Holiday {
     #[wasm_bindgen(getter)]
     pub fn name(&self) -> String {
         self.name.clone()
@@ -24,7 +25,7 @@ impl HolidayRecord {
     }
 }
 
-impl FromStr for HolidayRecord {
+impl FromStr for Holiday {
     type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let (date, name) = s
@@ -36,14 +37,18 @@ impl FromStr for HolidayRecord {
     }
 }
 
+/// Get the pastafarian holiday for a given date provided as an ISO8601 date string
 #[wasm_bindgen]
-pub fn get_holidays_for_date_string(date: &str) -> Option<HolidayRecord> {
-    chrono::DateTime::from_str(date)
-        .ok()
-        .and_then(get_holiday_for_date)
+pub fn get_holiday_for_date_string(date: &str) -> Result<Holiday, String> {
+    chrono::DateTime::parse_from_rfc3339(date)
+        .map_err(|_| "Failed to parse ISO8601 date".to_owned())
+        .and_then(|date| {
+            get_holiday_for_date(date).ok_or_else(|| "Didn't find holiday for date".to_owned())
+        })
 }
 
-pub fn get_holiday_for_date(date: DateTime<Local>) -> Option<HolidayRecord> {
+/// Get the pastafarian holiday for a given date
+pub fn get_holiday_for_date<T: chrono::TimeZone>(date: DateTime<T>) -> Option<Holiday> {
     // Get days since 1st Jan
     let date = date.with_hour(0).unwrap().with_minute(0).unwrap();
     let first_day = date.with_day0(0).unwrap().with_month0(0).unwrap();
@@ -51,5 +56,5 @@ pub fn get_holiday_for_date(date: DateTime<Local>) -> Option<HolidayRecord> {
 
     // Index into holidays using days since
     let day = HOLIDAYS.lines().nth(days_since + 1);
-    day.and_then(|day_text| HolidayRecord::from_str(day_text).ok())
+    day.and_then(|day_text| Holiday::from_str(day_text).ok())
 }
