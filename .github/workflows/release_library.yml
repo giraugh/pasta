@@ -45,7 +45,6 @@ jobs:
       run: yarn install --immutable
     
     - name: Make release with changeset
-      working-directory: ./pasta-lib/pkg
       uses: changesets/action@v1
       with:
         publish: yarn ci:release
@@ -53,3 +52,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      working-directory: ./pasta-lib/pkg
