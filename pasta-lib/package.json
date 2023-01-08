@@ -12,12 +12,12 @@
     "ci:release": "yarn changeset publish"
   },
   "files": [
-    "pasta_lib_bg.wasm",
-    "pasta_lib.js",
-    "pasta_lib.d.ts"
+    "./pkg/pasta_lib_bg.wasm",
+    "./pkg/pasta_lib.js",
+    "./pkg/pasta_lib.d.ts"
   ],
-  "module": "pasta_lib.js",
-  "types": "pasta_lib.d.ts",
+  "module": "./pkg/pasta_lib.js",
+  "types": "./pkg/pasta_lib.d.ts",
   "sideEffects": false,
   "devDependencies": {
     "@changesets/cli": "^2.26.0"

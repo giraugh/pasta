@@ -39,11 +39,10 @@ jobs:
 
     - name: Create package to release
       run: |
-        cp ./package.json ./pkg/package.json
-        cp -r .changeset ./pkg/.changeset
+        rm ./pkg/package.json
 
     - name: Install npm dependencies
-      working-directory: ./pasta-lib/pkg
+      working-directory: ./pasta-lib
       run: yarn install --immutable
     
     - name: Make release with changeset
@@ -51,7 +50,7 @@ jobs:
       with:
         publish: yarn ci:release
         commit: 'ci: release'
-        cwd: ./pasta-lib/pkg
+        cwd: ./pasta-lib
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
