@@ -49,7 +49,7 @@ jobs:
       with:
         publish: yarn ci:release
         commit: 'ci: release'
+        cwd: ./pasta-lib/pkg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      working-directory: ./pasta-lib/pkg
