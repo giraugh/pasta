@@ -50,12 +50,7 @@ jobs:
       with:
         commit: 'ci: release'
         cwd: ./pasta-lib
-        publish: |
-          curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-          cargo check
-          wasm-pack build
-          rm ./pkg/package.json
-          yarn changeset publish
+        publish: ./publish.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
