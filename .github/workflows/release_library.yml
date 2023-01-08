@@ -28,18 +28,18 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: '**/yarn.lock'
 
-    - name: Install wasm-pack
-      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+    # - name: Install wasm-pack
+    #   run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-    - name: Check rust validity
-      run: cargo check
+    # - name: Check rust validity
+    #   run: cargo check
 
-    - name: Build WASM package
-      run: wasm-pack build --target web
+    # - name: Build WASM package
+    #   run: wasm-pack build --target web
 
-    - name: Create package to release
-      run: |
-        rm ./pkg/package.json
+    # - name: Create package to release
+    #   run: |
+    #     rm ./pkg/package.json
 
     - name: Install npm dependencies
       working-directory: ./pasta-lib
@@ -48,9 +48,14 @@ jobs:
     - name: Make release with changeset
       uses: changesets/action@v1
       with:
-        publish: yarn ci:release
         commit: 'ci: release'
         cwd: ./pasta-lib
+        publish: |
+          curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+          cargo check
+          wasm-pack build --target web
+          rm ./pkg/package.json
+          yarn changeset publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
