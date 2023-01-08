@@ -1,15 +1,14 @@
-mod holiday_record;
-use holiday_record::parse_holidays;
 use chrono::prelude::Local;
+use pasta::get_holiday_for_date;
 
 fn main() {
-    let holidays = parse_holidays();
-    let current_date = Local::now().format("%b %-e").to_string();
-    for holiday in holidays.iter() {
-        if holiday.date.trim().eq(current_date.trim()) {
-            println!("{}", holiday.holiday);
-            break;
-        }
+    // Get holiday
+    let current_date = Local::now();
+    let holiday = get_holiday_for_date(current_date);
+
+    // Print holiday
+    match holiday {
+        Some(holiday) => println!("{}", holiday.name),
+        None => println!("Didn't find holiday for today :("),
     }
 }
-
