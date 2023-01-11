@@ -1,5 +1,11 @@
 # @giraugh/pasta
 
+## 0.2.3
+
+### Patch Changes
+
+- d1f8ef6: Fix npm file listing for node-pkg
+
 ## 0.2.2
 
 ### Patch Changes
