@@ -1,5 +1,11 @@
 # @giraugh/pasta
 
+## 0.2.2
+
+### Patch Changes
+
+- e73d2d3: Produce node packages at @giraugh/pasta/pkg-node
+
 ## 0.2.1
 
 ### Patch Changes
