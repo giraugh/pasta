@@ -2,7 +2,7 @@
   "name": "@giraugh/pasta",
   "description": "Get the pastafarian holiday for any date",
   "private": false,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,7 +16,6 @@
     "./pkg/pasta_lib.js",
     "./pkg/pasta_lib_bg.js",
     "./pkg/pasta_lib.d.ts",
-
     "./pkg-node/pasta_lib_bg.wasm",
     "./pkg-node/pasta_lib.js",
     "./pkg-node/pasta_lib.d.ts"
