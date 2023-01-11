@@ -15,7 +15,11 @@
     "./pkg/pasta_lib_bg.wasm",
     "./pkg/pasta_lib.js",
     "./pkg/pasta_lib_bg.js",
-    "./pkg/pasta_lib.d.ts"
+    "./pkg/pasta_lib.d.ts",
+
+    "./pkg-node/pasta_lib_bg.wasm",
+    "./pkg-node/pasta_lib.js",
+    "./pkg-node/pasta_lib.d.ts"
   ],
   "module": "./pkg/pasta_lib.js",
   "types": "./pkg/pasta_lib.d.ts",
